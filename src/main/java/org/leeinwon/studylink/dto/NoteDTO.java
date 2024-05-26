@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 public class NoteDTO {
 
-    private int id;
+    private long id;
 
     @NotEmpty
     private String title;

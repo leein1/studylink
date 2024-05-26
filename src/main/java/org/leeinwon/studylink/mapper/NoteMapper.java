@@ -9,4 +9,8 @@ public interface NoteMapper {
     void insert(NoteVO noteVO);
 
     List<NoteVO> selectAll();
+
+    NoteVO selectOne(long id);
+
+    void delete(long id);
 }

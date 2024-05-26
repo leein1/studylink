@@ -14,9 +14,7 @@
 <body>
     <h1>note list</h1>
     <c:forEach items="${dtoList}" var="dto">
-        title : ${dto.title}<br>
-        content : ${dto.content}<br>
-        createdate " ${dto.createdate}<br>
+        <a href="/note/read?id=${dto.id}">title : ${dto.title}</a> <br>
         <hr>
     </c:forEach>
 </body>

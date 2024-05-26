@@ -25,20 +25,30 @@ public class NoteController {
     @GetMapping("/list")
     public void list(Model model) {
 
-        log.info("컨트롤러 list 요청");
-        model.addAttribute("dtoList",noteService.getAll());
+        log.info("노트 컨트롤러 list 요청");
+        model.addAttribute("dtoList",noteService.getList());
+    }
+
+    @GetMapping("/read")
+    public void read(long id, Model model) {
+
+        log.info("노트 컨트롤러 read 요청");
+
+        NoteDTO noteDTO = noteService.getOne(id);
+        model.addAttribute("dto",noteDTO);
+
     }
 
     @GetMapping("/register")
     public void registerGET(){
 
-        log.info("컨트롤러 registerGET 호출");
+        log.info("노트 컨트롤러 registerGET 호출");
     }
 
     @PostMapping("/register")
     public String registerPOST(@Valid NoteDTO noteDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
-        log.info("컨트롤러 registerPOST 호출");
+        log.info("노트 컨트롤러 registerPOST 호출");
 
         if(bindingResult.hasErrors()){
             log.info("bindingResult 에러");
@@ -52,5 +62,14 @@ public class NoteController {
 
         return "redirect:/note/list";
 
+    }
+
+    @PostMapping("/remove")
+    public String removePOST(long id){
+
+        log.info("노트 컨트롤러 removePOST 호출");
+
+        noteService.remove(id);
+        return "redirect:/note/list";
     }
 }

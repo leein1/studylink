@@ -12,5 +12,9 @@ public interface NoteService {
 
     void register(NoteDTO noteDTO);
 
-    List<NoteDTO> getAll();
+    List<NoteDTO> getList();
+
+    NoteDTO getOne(long id);
+
+    void remove(long id);
 }

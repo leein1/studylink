@@ -28,8 +28,20 @@ public class NoteServiceTests {
     }
 
     @Test
-    public void testGetAll(){
+    public void testGetList(){
 
-        noteService.getAll().forEach(dto -> System.out.println(dto));
+        noteService.getList().forEach(dto -> log.info(dto));
+    }
+
+    @Test
+    public void testGetOne(){
+
+        log.info(noteService.getOne(1l));
+    }
+
+    @Test
+    public void testRemove(){
+
+        noteService.remove(10l);
     }
 }

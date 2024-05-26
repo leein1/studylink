@@ -20,6 +20,7 @@ public class NoteMapperTests {
 
     @Test
     public void testInsert(){
+
         NoteVO noteVO = NoteVO.builder()
                 .title("매퍼 테스트2")
                 .content("내용 테스트2")
@@ -30,8 +31,23 @@ public class NoteMapperTests {
 
     @Test
     public void testSelectAll(){
+
         List<NoteVO> noteVoList = noteMapper.selectAll();
 
-        noteVoList.forEach(vo -> System.out.println(vo));
+        noteVoList.forEach(vo -> log.info(vo));
+    }
+
+    @Test
+    public void testSelectOne(){
+
+        NoteVO noteVO = noteMapper.selectOne(1l);
+        log.info(noteVO);
+    }
+
+    @Test
+    public void testDelete(){
+
+        noteMapper.delete(11l);
+        testSelectAll();
     }
 }

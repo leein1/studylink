@@ -33,7 +33,7 @@ public class NoteServiceImpl implements NoteService{
     }
 
     @Override
-    public List<NoteDTO> getAll() {
+    public List<NoteDTO> getList() {
 
         log.info("노트 서비스 getAllNotes 호출");
 
@@ -42,5 +42,23 @@ public class NoteServiceImpl implements NoteService{
                 .collect(Collectors.toList());
 
         return noteDTOList;
+    }
+
+    @Override
+    public NoteDTO getOne(long id) {
+
+        log.info("노트 서비스 getOne 호출");
+
+        NoteVO noteVO = noteMapper.selectOne(id);
+        NoteDTO noteDTO = modelMapper.map(noteVO, NoteDTO.class);
+
+        return noteDTO;
+    }
+
+    @Override
+    public void remove(long id) {
+
+        log.info("노트 서비스 remove 호출");
+        noteMapper.delete(id);
     }
 }

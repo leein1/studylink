@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 public class NoteVO {
 
-    private int id;
+    private long id;
 
     private String title;
 
