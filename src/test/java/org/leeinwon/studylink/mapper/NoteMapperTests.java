@@ -4,6 +4,8 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.leeinwon.studylink.domain.NoteVO;
+import org.leeinwon.studylink.dto.NoteDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -17,6 +19,9 @@ public class NoteMapperTests {
 
     @Autowired(required = false)
     private NoteMapper noteMapper;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Test
     public void testInsert(){
@@ -42,6 +47,30 @@ public class NoteMapperTests {
 
         NoteVO noteVO = noteMapper.selectOne(1l);
         log.info(noteVO);
+    }
+
+    @Test
+    public void testUpdate(){
+//        NoteVO noteVO = noteMapper.selectOne(2l);
+//
+//        noteVO.builder()
+//                .title("업데이트 테스트")
+//                .content("업데이트 테스트")
+//                .build();
+//
+//        log.info(noteVO);
+//        noteMapper.update(noteVO);
+
+        NoteVO noteVO = noteMapper.selectOne(2l);
+        log.info(noteVO);
+
+        NoteDTO noteDTO = modelMapper.map(noteVO, NoteDTO.class);
+        noteDTO.setTitle("업데이트 테스트");
+        noteDTO.setContent("업데이트 테스트");
+        log.info(noteDTO);
+
+        noteMapper.update(modelMapper.map(noteDTO, NoteVO.class));
+
     }
 
     @Test

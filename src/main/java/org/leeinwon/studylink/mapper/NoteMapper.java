@@ -12,5 +12,7 @@ public interface NoteMapper {
 
     NoteVO selectOne(long id);
 
+    void update(NoteVO noteVO);
+
     void delete(long id);
 }
