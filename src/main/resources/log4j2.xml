@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="INFO">
+    <Appenders>
+        <!--콘솔-->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss} %5p [%c] %m%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="org.springframework" level="INFO" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <Logger name="org.leeinwon" level="INFO" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <Logger name="org.leeinwon.studylink.mapper" level="TRACE" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <Root level="INFO" additivity="false">
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+
+</configuration>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <mvc:annotation-driven></mvc:annotation-driven>
+    <!--    <mvc:annotation-driven> 설정은 스프링 MVC설정을 어노테이션 기반으로 처리한다는 의미
+        스프링 MVC의 여러 객체들을 자동으로 스프링의 빈 으로 등록하게 기능-->
+
+    <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
+    <!--  이미지나 html 등 정적인 파일 경로 지정
+      해당 경로로 들어오는 요청은 정적파일 요구로 판단, 스프링 mvc 에서 처리하지 않음
+      location 속성 값은 webapp 폴더에 만들어둔 폴더를 의미-->
+
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+    <!--    InternalResourceViewResolver 는 스프링 MVC 에서 뷰를 어떻게 결정하는지에 대한 설정을 담당
+        기존 MVC에서 WEB-INF 의 경로와 .jsp 라는 확장자를 지정. 직접 설정을 생략할수 있는 장점-->
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="org.leeinwon.studylink.controller.formatter.LocalDateFormatter"/>
+            </set>
+        </property>
+    </bean>
+    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+    <!--  위의 formatter 빈을 사용하기 위해 지정  -->
+
+
+    <context:component-scan base-package="org.leeinwon.studylink.controller"></context:component-scan>
+
+</beans>
