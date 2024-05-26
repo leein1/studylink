@@ -26,6 +26,7 @@ public class NoteController {
     public void list(Model model) {
 
         log.info("컨트롤러 list 요청");
+        model.addAttribute("dtoList",noteService.getAll());
     }
 
     @GetMapping("/register")

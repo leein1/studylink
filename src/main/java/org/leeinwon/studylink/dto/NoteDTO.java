@@ -5,6 +5,7 @@ import lombok.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @ToString
@@ -19,5 +20,9 @@ public class NoteDTO {
     private String title;
 
     private String content;
+
+    private LocalDate date;
+
+    private LocalDateTime createdate;
 
 }

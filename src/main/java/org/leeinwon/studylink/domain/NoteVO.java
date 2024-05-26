@@ -2,6 +2,8 @@ package org.leeinwon.studylink.domain;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,4 +16,6 @@ public class NoteVO {
     private String title;
 
     private String content;
+
+    private LocalDateTime createdate;
 }

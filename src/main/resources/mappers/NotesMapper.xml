@@ -7,4 +7,8 @@
     <insert id="insert">
         insert into notes (title, content) values(#{title}, #{content})
     </insert>
+
+    <select id="selectAll" resultType="org.leeinwon.studylink.domain.NoteVO">
+        select * from notes order by id asc;
+    </select>
 </mapper>

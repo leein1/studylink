@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 @Log4j2
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/root-context.xml")
@@ -24,5 +26,12 @@ public class NoteMapperTests {
                 .build();
 
         noteMapper.insert(noteVO);
+    }
+
+    @Test
+    public void testSelectAll(){
+        List<NoteVO> noteVoList = noteMapper.selectAll();
+
+        noteVoList.forEach(vo -> System.out.println(vo));
     }
 }

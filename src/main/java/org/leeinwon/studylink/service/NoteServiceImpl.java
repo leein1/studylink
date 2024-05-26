@@ -8,6 +8,9 @@ import org.leeinwon.studylink.mapper.NoteMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -27,5 +30,17 @@ public class NoteServiceImpl implements NoteService{
         log.info(noteDTO);
 
         noteMapper.insert(noteVO);
+    }
+
+    @Override
+    public List<NoteDTO> getAll() {
+
+        log.info("노트 서비스 getAllNotes 호출");
+
+        List<NoteDTO> noteDTOList = noteMapper.selectAll().stream()
+                .map(vo -> modelMapper.map(vo, NoteDTO.class))
+                .collect(Collectors.toList());
+
+        return noteDTOList;
     }
 }

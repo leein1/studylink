@@ -20,10 +20,16 @@ public class NoteServiceTests {
     public void testResgister(){
 
         NoteDTO noteDTO = NoteDTO.builder()
-                .title("서비스 테스트5 작성일 컬럼 데이터 타입 datetime 변경")
+                .title("서비스 테스트6 깃 커밋 후 테스트")
                 .content("서비스 테스트")
                 .build();
 
         noteService.register(noteDTO);
+    }
+
+    @Test
+    public void testGetAll(){
+
+        noteService.getAll().forEach(dto -> System.out.println(dto));
     }
 }

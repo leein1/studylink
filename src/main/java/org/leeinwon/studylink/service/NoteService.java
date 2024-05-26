@@ -6,7 +6,11 @@ import org.leeinwon.studylink.domain.NoteVO;
 import org.leeinwon.studylink.dto.NoteDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 public interface NoteService {
 
     void register(NoteDTO noteDTO);
+
+    List<NoteDTO> getAll();
 }
