@@ -18,4 +18,6 @@ public class NoteVO {
     private String content;
 
     private LocalDateTime createdate;
+
+    private LocalDateTime updatedate;
 }

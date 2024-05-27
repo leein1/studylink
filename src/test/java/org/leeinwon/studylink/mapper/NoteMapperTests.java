@@ -60,6 +60,7 @@ public class NoteMapperTests {
 //
 //        log.info(noteVO);
 //        noteMapper.update(noteVO);
+//        잘못된 코드
 
         NoteVO noteVO = noteMapper.selectOne(2l);
         log.info(noteVO);

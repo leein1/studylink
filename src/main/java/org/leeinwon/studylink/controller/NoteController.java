@@ -29,11 +29,11 @@ public class NoteController {
         model.addAttribute("dtoList",noteService.getList());
     }
 
-    @GetMapping("/read")
-    public void read(long id, Model model) {
+    @GetMapping({"/read", "/modify"})
+    public void read(Long id, Model model) {
 
-        log.info("노트 컨트롤러 read 요청");
-
+        log.info("노트 컨트롤러 read /modify 요청");
+        log.info(id);
         NoteDTO noteDTO = noteService.getOne(id);
         model.addAttribute("dto",noteDTO);
 

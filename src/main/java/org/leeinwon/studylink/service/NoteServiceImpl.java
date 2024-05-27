@@ -56,6 +56,15 @@ public class NoteServiceImpl implements NoteService{
     }
 
     @Override
+    public void modify(NoteDTO noteDTO) {
+
+        log.info("노트 서비스 modify 호출");
+
+        NoteVO noteVO = modelMapper.map(noteDTO, NoteVO.class);
+        noteMapper.update(noteVO);
+    }
+
+    @Override
     public void remove(long id) {
 
         log.info("노트 서비스 remove 호출");

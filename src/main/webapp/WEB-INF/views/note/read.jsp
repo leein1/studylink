@@ -13,14 +13,16 @@
 </head>
 <body>
     <h1>note read</h1>
-    <form action="modify" method="get">
+    <form action="/note/modify?id=${dto.id}" method="get">
         <c:if test="${not empty dto}">
             ${dto.id}<br>
             ${dto.title}<br>
             ${dto.content}<br>
             ${dto.createdate}<br>
         </c:if>
+        
         <button id="remove-button" type="button">remove</button>
+        <button id="modify-button" type="submit">modify</button>
     </form>
     <script>
         const formObj = document.querySelector("form")
@@ -35,6 +37,17 @@
 
             formObj.submit()
         },false)
+
+        <%--document.querySelector("#modify-button").addEventListener("click",function (e){--%>
+
+        <%--    e.preventDefault()--%>
+        <%--    e.stopPropagation()--%>
+
+        <%--    formObj.action = "/note/modify?id=${dto.id}"--%>
+        <%--    formObj.method = "get"--%>
+
+        <%--    formObj.submit()--%>
+        <%--},false)--%>
     </script>
 </body>
 </html>

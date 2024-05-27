@@ -21,8 +21,8 @@ public class NoteDTO {
 
     private String content;
 
-    private LocalDate date;
-
     private LocalDateTime createdate;
+
+    private LocalDateTime updatedate;
 
 }

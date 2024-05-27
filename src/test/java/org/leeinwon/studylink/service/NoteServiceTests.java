@@ -40,6 +40,18 @@ public class NoteServiceTests {
     }
 
     @Test
+    public void testModify(){
+
+        NoteDTO noteDTO = NoteDTO.builder()
+                        .id(3l)
+                        .title("modify 서비스 테스트")
+                        .content("modify 서비스 테스트")
+                                .build();
+
+        noteService.modify(noteDTO);
+    }
+
+    @Test
     public void testRemove(){
 
         noteService.remove(10l);
