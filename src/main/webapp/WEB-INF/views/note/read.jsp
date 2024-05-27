@@ -13,7 +13,7 @@
 </head>
 <body>
     <h1>note read</h1>
-    <form action="/note/modify?id=${dto.id}" method="get">
+    <form>
         <c:if test="${not empty dto}">
             ${dto.id}<br>
             ${dto.title}<br>
@@ -22,7 +22,7 @@
         </c:if>
         
         <button id="remove-button" type="button">remove</button>
-        <button id="modify-button" type="submit">modify</button>
+        <button id="modify-button" type="button">modify</button>
     </form>
     <script>
         const formObj = document.querySelector("form")
@@ -38,16 +38,17 @@
             formObj.submit()
         },false)
 
-        <%--document.querySelector("#modify-button").addEventListener("click",function (e){--%>
+        document.querySelector("#modify-button").addEventListener("click",function (e){
 
-        <%--    e.preventDefault()--%>
-        <%--    e.stopPropagation()--%>
+            e.preventDefault()
+            e.stopPropagation()
+            self.location = "/note/modify?id=${dto.id}"
+            <%--formObj.action = "/note/modify?id=${dto.id}"--%>
+            <%--formObj.method = "get"--%>
 
-        <%--    formObj.action = "/note/modify?id=${dto.id}"--%>
-        <%--    formObj.method = "get"--%>
-
-        <%--    formObj.submit()--%>
-        <%--},false)--%>
+            <%--formObj.submit()--%>
+            <%--           위 주석은 잘못된 코드였다...--%>
+        },false)
     </script>
 </body>
 </html>
