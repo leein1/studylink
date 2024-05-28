@@ -17,5 +17,11 @@
         ${dto.id} | <a href="/note/read?id=${dto.id}">title : ${dto.title}</a> <br>
         <hr>
     </c:forEach>
+    <button id="register-button" type="button">register</button>
+    <script>
+        document.querySelector("#register-button").addEventListener("click",function(e){
+            self.location = "/note/register"
+        },false)
+    </script>
 </body>
 </html>

@@ -13,7 +13,29 @@
 </head>
 <body>
     <h1>modify</h1>
-    ${dto.id}
+    <form>
+        <input type="number" value="${dto.id}" name="id" readonly>
+        <input type="date" value="${dto.createdate}" readonly>
+        <input type="text" value="${dto.title}" name="title">
+        <input type="text" value="${dto.content}" name="content">
+
+        <button id="modify-button" type="button">modify</button>
+    </form>
+    <script>
+        const formObj = document.querySelector("form")
+
+        document.querySelector("#modify-button").addEventListener("click",function (e){
+
+            e.preventDefault()
+            e.stopPropagation()
+
+            formObj.action = "/note/modify"
+            formObj.method = "post"
+
+            formObj.submit()
+        },false)
+
+    </script>
 
 </body>
 </html>

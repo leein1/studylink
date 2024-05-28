@@ -32,10 +32,17 @@
             e.preventDefault()
             e.stopPropagation()
 
-            formObj.action = "/note/remove?id=${dto.id}"
-            formObj.method = "post"
+            <%--formObj.action = "/note/remove?id=${dto.id}"--%>
+            <%--formObj.method = "post"--%>
 
-            formObj.submit()
+            <%--formObj.submit()--%>
+            <%--팝업을 위해 변경--%>
+
+            if (confirm("정말 삭제하시겠습니까?")) {
+                formObj.action = "/note/remove?id=${dto.id}"
+                formObj.method = "post"
+                formObj.submit()
+            }
         },false)
 
         document.querySelector("#modify-button").addEventListener("click",function (e){

@@ -40,6 +40,22 @@ public class NoteController {
 
     }
 
+    @PostMapping("/modify")
+    public String modifyPOST(@Valid NoteDTO noteDTO, BindingResult bindingResult,RedirectAttributes redirectAttributes){
+
+        log.info("노트 컨트롤러 modifyPOST 호출");
+
+        if (bindingResult.hasErrors()) {
+            log.info("bindingResult 에러");
+            redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/note/modify?id=" + noteDTO.getId();
+        }
+
+        noteService.modify(noteDTO);
+
+        return "redirect:/note/list";
+    }
+
     @GetMapping("/register")
     public void registerGET(){
 
