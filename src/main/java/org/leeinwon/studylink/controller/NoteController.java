@@ -53,7 +53,7 @@ public class NoteController {
 
         noteService.modify(noteDTO);
 
-        return "redirect:/note/list";
+        return "redirect:/note/read?id=" + noteDTO.getId();
     }
 
     @GetMapping("/register")

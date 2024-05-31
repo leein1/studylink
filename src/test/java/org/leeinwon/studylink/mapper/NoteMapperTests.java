@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.leeinwon.studylink.domain.NoteVO;
 import org.leeinwon.studylink.dto.NoteDTO;
+import org.leeinwon.studylink.dto.SearchDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -40,6 +41,18 @@ public class NoteMapperTests {
         List<NoteVO> noteVoList = noteMapper.selectAll();
 
         noteVoList.forEach(vo -> log.info(vo));
+    }
+
+    @Test
+    public void testSelectSearchList(){
+        SearchDTO searchDTO = SearchDTO.builder()
+                .title("java")
+                .content("1")
+                .build();
+
+        List<NoteVO> noteVOList = noteMapper.selectSearchList(searchDTO);
+
+        noteVOList.forEach(vo -> log.info(vo));
     }
 
     @Test

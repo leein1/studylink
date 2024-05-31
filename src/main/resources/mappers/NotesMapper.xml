@@ -9,7 +9,24 @@
     </insert>
 
     <select id="selectAll" resultType="org.leeinwon.studylink.domain.NoteVO">
-        select * from notes order by id asc;
+        select * from notes order by id asc
+    </select>
+
+    <select id="selectSearchList" resultType="org.leeinwon.studylink.domain.NoteVO">
+        select * from notes
+        <where>
+            <if test="title != null">
+                title like concat('%', #{title}, '%')
+            </if>
+            <if test="content != null">
+                and content like concat('%', #{content}, '%')
+            </if>
+        </where>
+        order by id asc
+
+<!--        where (title like concat('%', #{title}, '%')-->
+<!--        and content like concat('%', #{content}, '%'))-->
+<!--        order by id asc-->
     </select>
 
     <select id="selectOne" resultType="org.leeinwon.studylink.domain.NoteVO">
