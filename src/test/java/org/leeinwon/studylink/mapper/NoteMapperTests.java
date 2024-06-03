@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Log4j2
@@ -45,9 +46,13 @@ public class NoteMapperTests {
 
     @Test
     public void testSelectSearchList(){
+//        SearchDTO searchDTO = SearchDTO.builder()
+//                .title("java")
+//                .content("1")
+//                .build();
         SearchDTO searchDTO = SearchDTO.builder()
-                .title("java")
-                .content("1")
+                .types(Arrays.asList("title","content"))
+                .keyword("2")
                 .build();
 
         List<NoteVO> noteVOList = noteMapper.selectSearchList(searchDTO);

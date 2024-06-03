@@ -15,14 +15,26 @@
     <select id="selectSearchList" resultType="org.leeinwon.studylink.domain.NoteVO">
         select * from notes
         <where>
-            <if test="title != null">
-                title like concat('%', #{title}, '%')
-            </if>
-            <if test="content != null">
-                and content like concat('%', #{content}, '%')
-            </if>
+            <foreach collection="types" item="type" open="(" close=")" separator="OR">
+                <if test="type == 'title'.toString()">
+                    title like concat('%', #{keyword}, '%')
+                </if>
+                <if test="type == 'content'.toString()">
+                    content like concat('%', #{keyword}, '%')
+                </if>
+            </foreach>
         </where>
         order by id asc
+        
+<!--        <where>-->
+<!--            <if test="title != null">-->
+<!--                title like concat('%', #{title}, '%')-->
+<!--            </if>-->
+<!--            <if test="content != null">-->
+<!--                and content like concat('%', #{content}, '%')-->
+<!--            </if>-->
+<!--        </where>-->
+<!--        order by id asc-->
 
 <!--        where (title like concat('%', #{title}, '%')-->
 <!--        and content like concat('%', #{content}, '%'))-->
