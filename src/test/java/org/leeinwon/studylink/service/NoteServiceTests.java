@@ -4,9 +4,12 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.leeinwon.studylink.dto.NoteDTO;
+import org.leeinwon.studylink.dto.SearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.Arrays;
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
@@ -31,6 +34,17 @@ public class NoteServiceTests {
     public void testGetList(){
 
         noteService.getList().forEach(dto -> log.info(dto));
+    }
+
+    @Test
+    public void testgetSearchList(){
+
+        noteService.getSearchList(
+                SearchDTO.builder()
+                .types(Arrays.asList("title","content"))
+                .keyword("java")
+                .build()
+        ).forEach(dto -> log.info(dto));
     }
 
     @Test

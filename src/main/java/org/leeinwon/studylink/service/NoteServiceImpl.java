@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.leeinwon.studylink.domain.NoteVO;
 import org.leeinwon.studylink.dto.NoteDTO;
+import org.leeinwon.studylink.dto.SearchDTO;
 import org.leeinwon.studylink.mapper.NoteMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,18 @@ public class NoteServiceImpl implements NoteService{
         log.info("노트 서비스 getAllNotes 호출");
 
         List<NoteDTO> noteDTOList = noteMapper.selectAll().stream()
+                .map(vo -> modelMapper.map(vo, NoteDTO.class))
+                .collect(Collectors.toList());
+
+        return noteDTOList;
+    }
+
+    @Override
+    public List<NoteDTO> getSearchList(SearchDTO searchDTO) {
+
+        log.info("노트 서비스 getSearchList 호출");
+
+        List<NoteDTO> noteDTOList = noteMapper.selectSearchList(searchDTO).stream()
                 .map(vo -> modelMapper.map(vo, NoteDTO.class))
                 .collect(Collectors.toList());
 

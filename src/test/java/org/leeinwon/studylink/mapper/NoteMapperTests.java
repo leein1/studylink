@@ -50,10 +50,12 @@ public class NoteMapperTests {
 //                .title("java")
 //                .content("1")
 //                .build();
-        SearchDTO searchDTO = SearchDTO.builder()
-                .types(Arrays.asList("title","content"))
-                .keyword("2")
-                .build();
+//        SearchDTO searchDTO = SearchDTO.builder()
+//                .types(Arrays.asList("title","content"))
+//                .keyword("2")
+//                .build();
+
+        SearchDTO searchDTO = SearchDTO.builder().build();
 
         List<NoteVO> noteVOList = noteMapper.selectSearchList(searchDTO);
 

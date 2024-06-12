@@ -3,6 +3,7 @@ package org.leeinwon.studylink.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.leeinwon.studylink.dto.NoteDTO;
+import org.leeinwon.studylink.dto.SearchDTO;
 import org.leeinwon.studylink.service.NoteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +23,20 @@ public class NoteController {
 
     private final NoteService noteService;
 
+//    @GetMapping("/list")
+//    public void list(Model model) {
+//
+//        log.info("노트 컨트롤러 list 요청");
+//        model.addAttribute("dtoList",noteService.getList());
+//    }
     @GetMapping("/list")
-    public void list(Model model) {
+    public void list(Model model, SearchDTO searchDTO) {
 
-        log.info("노트 컨트롤러 list 요청");
-        model.addAttribute("dtoList",noteService.getList());
+        log.info("노트 컨트롤러 list(검색 테스트용) 호출");
+        log.info(searchDTO);
+
+        model.addAttribute("searchDTO", searchDTO);
+        model.addAttribute("dtoList", noteService.getSearchList(searchDTO));
     }
 
     @GetMapping({"/read", "/modify"})
