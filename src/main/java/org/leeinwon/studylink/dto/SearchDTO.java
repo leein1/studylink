@@ -24,4 +24,16 @@ public class SearchDTO {
 //    검색어 저장할 Sring
     private String keyword;
 
+    public boolean checkType(String type) {
+        if(types != null) {
+            for (int i = 0; i < types.size(); i++) {
+                if (types.get(i).equals(type)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
 }

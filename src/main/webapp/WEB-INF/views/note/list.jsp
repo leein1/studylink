@@ -15,24 +15,36 @@
 <body>
     <h1>note list</h1>
     <div class="searchOption">
-        <c:if test="${not empty searchDTO }">
-            <c:forEach items="${searchDTO.types}" var="type">
-                <c:choose>
-                    <c:when test="${type eq 'title'}">
-                        <c:set var="titleStatus" value="true"></c:set>
-                    </c:when>
-                    <c:when test="${type eq 'content'}">
-                        <c:set var="contentStatus" value="true"></c:set>
-                    </c:when>
-                </c:choose>
-            </c:forEach>
-        </c:if>
-        <form action="/note/list" method="get">
-            제목 검색<input type="checkbox" value="title" name="types" <c:if test="${titleStatus}">checked</c:if>>
-            내용 검색<input type="checkbox" value="content" name="types" <c:if test="${contentStatus}">checked</c:if> >
-            검색어 : <input type="text" name="keyword" <c:if test="${not empty searchDTO.keyword}">value="${searchDTO.keyword}" </c:if>>
-            <button type="submit">Search</button>
-        </form>
+<%--        <c:if test="${not empty searchDTO }">--%>
+<%--            <c:forEach items="${searchDTO.types}" var="type">--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${type eq 'title'}">--%>
+<%--                        <c:set var="titleStatus" value="true"></c:set>--%>
+<%--                    </c:when>--%>
+<%--                    <c:when test="${type eq 'content'}">--%>
+<%--                        <c:set var="contentStatus" value="true"></c:set>--%>
+<%--                    </c:when>--%>
+<%--                </c:choose>--%>
+<%--            </c:forEach>--%>
+<%--            &lt;%&ndash;    DEBUG&ndash;%&gt;--%>
+<%--            <script>--%>
+<%--                console.log("${searchDTO.checkType('title')}");--%>
+<%--            </script>--%>
+<%--            &lt;%&ndash;    DEBUG&ndash;%&gt;--%>
+<%--        </c:if>--%>
+
+<%--        <form action="/note/list" method="get">--%>
+<%--            제목 검색<input type="checkbox" value="title" name="types" <c:if test="${titleStatus}">checked</c:if>>--%>
+<%--            내용 검색<input type="checkbox" value="content" name="types" <c:if test="${contentStatus}">checked</c:if> >--%>
+<%--            검색어 : <input type="text" name="keyword" <c:if test="${not empty searchDTO.keyword}">value="${searchDTO.keyword}" </c:if>>--%>
+<%--            <button type="submit">Search</button>--%>
+<%--        </form>--%>
+    <form action="/note/list" method="get">
+        제목 검색<input type="checkbox" value="title" name="types" ${searchDTO.checkType('title') ? "checked" : ""}>
+        내용 검색<input type="checkbox" value="content" name="types" ${searchDTO.checkType('content') ? "checked" : ""}>
+        검색어 : <input type="text" name="keyword" value="${searchDTO.keyword}">
+        <button type="submit">Search</button>
+    </form>
 <%--        <form id="searchForm" action="/note/list" method="get">--%>
 
 <%--            &lt;%&ndash; DEBUG&ndash;%&gt;--%>

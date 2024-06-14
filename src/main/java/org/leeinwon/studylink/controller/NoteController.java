@@ -34,7 +34,7 @@ public class NoteController {
 
         log.info("노트 컨트롤러 list(검색 테스트용) 호출");
         log.info(searchDTO);
-
+        
         model.addAttribute("searchDTO", searchDTO);
         model.addAttribute("dtoList", noteService.getSearchList(searchDTO));
     }
