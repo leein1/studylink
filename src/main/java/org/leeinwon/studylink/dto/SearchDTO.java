@@ -2,7 +2,8 @@ package org.leeinwon.studylink.dto;
 
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
+
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Data

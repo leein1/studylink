@@ -7,6 +7,7 @@ import org.leeinwon.studylink.dto.SearchDTO;
 import org.leeinwon.studylink.service.NoteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,14 +30,21 @@ public class NoteController {
 //        log.info("노트 컨트롤러 list 요청");
 //        model.addAttribute("dtoList",noteService.getList());
 //    }
+
     @GetMapping("/list")
-    public void list(Model model, SearchDTO searchDTO) {
+    public void list(SearchDTO searchDTO, Model model) {
 
         log.info("노트 컨트롤러 list(검색 테스트용) 호출");
         log.info(searchDTO);
-        
-        model.addAttribute("searchDTO", searchDTO);
+
+        if(!StringUtils.hasText(searchDTO.getKeyword())){
+            log.info("키워드가 없습니다.");
+            searchDTO.setKeyword(null);
+        }
+
         model.addAttribute("dtoList", noteService.getSearchList(searchDTO));
+        model.addAttribute("searchDTO", searchDTO);
+
     }
 
     @GetMapping({"/read", "/modify"})

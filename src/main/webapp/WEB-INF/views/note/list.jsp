@@ -14,6 +14,7 @@
 </head>
 <body>
     <h1>note list</h1>
+
     <div class="searchOption">
 <%--        <c:if test="${not empty searchDTO }">--%>
 <%--            <c:forEach items="${searchDTO.types}" var="type">--%>
@@ -39,13 +40,31 @@
 <%--            검색어 : <input type="text" name="keyword" <c:if test="${not empty searchDTO.keyword}">value="${searchDTO.keyword}" </c:if>>--%>
 <%--            <button type="submit">Search</button>--%>
 <%--        </form>--%>
-    <form action="/note/list" method="get">
-        제목 검색<input type="checkbox" value="title" name="types" ${searchDTO.checkType('title') ? "checked" : ""}>
-        내용 검색<input type="checkbox" value="content" name="types" ${searchDTO.checkType('content') ? "checked" : ""}>
-        검색어 : <input type="text" name="keyword" value="${searchDTO.keyword}">
-        <button type="submit">Search</button>
-    </form>
-<%--        <form id="searchForm" action="/note/list" method="get">--%>
+        <form action="/note/list" method="get">
+            제목 검색<input id="title" type="checkbox" value="title" name="types" ${searchDTO.checkType('title') ? "checked" : ""}>
+            내용 검색<input id="content" type="checkbox" value="content" name="types" ${searchDTO.checkType('content') ? "checked" : ""}>
+            검색어 : <input id="keyword" type="text" name="keyword" value="${searchDTO.keyword}">
+            <button type="submit">Search</button>
+        </form>
+        <script>
+            document.querySelector("form").addEventListener("submit",function(e){
+
+                let keyword = document.querySelector("#keyword").value.trim();
+                let title = document.querySelector("#title").checked;
+                let content = document.querySelector("#content").checked;
+
+                if(!title && !content){
+
+                    e.preventDefault();
+                    alert("검색 조건을 체크 해주세요");
+                }else if(!keyword){
+
+                   e.preventDefault();
+                   alert("검색어를 입력해주세요");
+               }
+            },false);
+        </script>
+    <%--        <form id="searchForm" action="/note/list" method="get">--%>
 
 <%--            &lt;%&ndash; DEBUG&ndash;%&gt;--%>
 <%--            <c:forEach var="type" items="${paramValues.types}">--%>
